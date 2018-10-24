@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 16:45:20 by jaleman           #+#    #+#             */
-/*   Updated: 2018/10/23 16:45:21 by jaleman          ###   ########.fr       */
+/*   Created: 2016/11/04 13:27:05 by jaleman           #+#    #+#             */
+/*   Updated: 2016/11/04 13:27:06 by jaleman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int   ft_ls(int argc, char const *argv[])
+/*
+** Outputs the char c to the file descriptor fd.
+*/
+
+int		ft_putchar_fd(char c, int fd)
 {
-    argc = (int)argv[1];
-    return (ft_putchar_fd('!', 1));
+	return (write(fd, &c, 1));
 }

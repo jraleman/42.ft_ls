@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 
+# include "libft.h"
+
 int   ft_ls(int argc, char const *argv[]);
 
 #endif
