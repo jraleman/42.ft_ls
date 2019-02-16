@@ -17,6 +17,11 @@
 
 # include "libft.h"
 
-int   ft_ls(int argc, char const *argv[]);
+# define    LS_FLAGS   "lRart"
+
+struct typedef 
+
+int     ft_ls(t_ls *ls, char *path);
+t_opt   parse_flags(int n, char const *flags[], t_opt *options);
 
 #endif
