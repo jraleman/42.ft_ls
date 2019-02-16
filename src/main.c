@@ -14,5 +14,12 @@
 
 int   main(int argc, char const *argv[])
 {
-    return (ft_ls(argc, argv));
+    t_ls    *ls;
+    char    *path;
+
+    if (read_flags(ls, argc, argv) > 1)
+        ft_ls(ls, path);
+    else
+        ft_ls(ls, ".");
+    return (0);
 }

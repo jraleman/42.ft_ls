@@ -12,8 +12,7 @@
 
 #include "ft_ls.h"
 
-int   ft_ls(int argc, char const *argv[])
+int     ft_ls(int n, char *pathname, char const *flags[])
 {
-    argc = (int)argv[1];
-    return (ft_putchar_fd('!', 1));
+    return (0);
 }
