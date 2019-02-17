@@ -17,11 +17,7 @@
 
 # include "libft.h"
 
-# define    LS_FLAGS   "lRart"
-
-struct typedef 
-
-int     ft_ls(t_ls *ls, char *path);
-t_opt   parse_flags(int n, char const *flags[], t_opt *options);
+# define    VALID_OPT   "-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
+# define    VALID_LEN   ft_strlen(VALID_OPT)
 
 #endif
