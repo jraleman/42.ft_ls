@@ -11,7 +11,7 @@ static void		parse_flag(char *bin, char *s, char *opt)
 		{
 			ft_printf("%s: illegal option -- %c\n", bin, s[i]);
 			ft_printf("usage: %s [-ARSTacfglrtu1] [file ...]", bin);
-			exit(1);
+			return (exit(1));
 		}
 		else if (!ft_cisin(opt, s[i]))
 			ft_strncat(opt, &(s[i]), 1);
