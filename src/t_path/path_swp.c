@@ -4,7 +4,7 @@
 ** ...
 */
 
-void        path_swap(t_path *a, t_path *b)
+void        path_swp(t_path *a, t_path *b)
 {
     char    *name;
     int     error;
