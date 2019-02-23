@@ -1,63 +1,76 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/10/23 16:42:05 by jaleman           #+#    #+#              #
-#    Updated: 2018/10/23 16:42:06 by jaleman          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = ft_ls 
 
-# Program name
-NAME      = ft_ls
+SRC =	src/main.c \
+		src/ft_ls.c \
+		\
+		src/t_file/file_add.c \
+		src/t_file/file_del.c \
+		src/t_file/file_dir.c \
+		src/t_file/file_ini.c \
+		src/t_file/file_srt.c \
+		src/t_file/file_swp.c \
+		\
+		src/t_path/path_add.c \
+		src/t_path/path_del.c \
+		src/t_path/path_len.c \
+		src/t_path/path_srt.c \
+		src/t_path/path_swp.c \
+		\
+		src/utils/print/print_date.c \
+		src/utils/print/print_list.c \
+		src/utils/print/print_name.c \
+		src/utils/print/print_type.c \
+		src/utils/print/print_perm.c \
+		\
+		src/utils/sort/compare.c \
+		src/utils/sort/file_sort_atime.c \
+		src/utils/sort/file_sort_ctime.c \
+		src/utils/sort/file_sort_mtime.c \
+		src/utils/sort/file_sort_name.c \
+		src/utils/sort/file_sort_size.c \
+		src/utils/sort/path_sort_atime.c \
+		src/utils/sort/path_sort_ctime.c \
+		src/utils/sort/path_sort_mtime.c \
+		src/utils/sort/path_sort_name.c \
+		src/utils/sort/path_sort_size.c \
 
-# Compiling flags
-FLAGS     = -Wall -Wextra -Werror -g -Ofast
+CC = gcc
 
-# Directories
-SRC_DIR   = ./src/
-OBJ_DIR   = ./obj/
-INC_DIR   = ./includes/
+CFLAGS = -I includes/ -I libft/ -Wall -Werror -Wextra
+DEBUG = #-g3 -fsanitize=address
 
-# Files
-SRC_FILES = main.c ft_ls.c
-OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-# Library
-LIB_DIR   = ./libft/
-LIB_BIN   = libft.a
-LIB_INC   = includes
+all: $(NAME)
 
-# Paths
-SRC       = $(addprefix $(SRC_DIR), $(SRC_FILES))
-OBJ       = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-LIB       = $(addprefix $(LIB_DIR), $(LIB_BIN))
+%.o: %.c
+	@printf "\033[0;32m[ft_ls] Compilation [o.]\033[0;0m\r"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "\033[0;32m[ft_ls] Compilation [.o]\033[0;0m\r"
 
-# Linker
-LNK       = -L $(LIB_DIR) -lft
+check:
+	-@cat $(SRC) | grep ft_strnew	| grep -v "if (\!(" 
+	-@cat $(SRC) | grep ft_strdup 	| grep -v "if (\!(" 
+	-@cat $(SRC) | grep ft_strndup	| grep -v "if (\!(" 
+	-@cat $(SRC) | grep malloc    	| grep -v "if (\!(" 
+	-@cat $(SRC) | grep printf		| grep -v ft_printf	| grep -v t_printf
+	@norminette $(SRC)
 
-# Rules
-all: obj $(LIB) $(NAME)
-obj:
-		@mkdir -p $(OBJ_DIR)
-$(OBJ_DIR)%.o:$(SRC_DIR)%.c
-		@gcc $(FLAGS) -I $(LIB_DIR)$(LIB_INC) -I $(INC_DIR) -o $@ -c $<
-$(LIB):
-	  @make -C $(LIB_DIR)
 $(NAME): $(OBJ)
-		@echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compiling... Wait a sec."
-		@gcc $(OBJ) $(LNK) -o $(NAME)
-		#	@gcc $(OBJ) $(LNK) -lm -fsanitize=address -o $(NAME)
-		@echo "(•̀ᴗ•́)و $(NAME) generated!"
+	@printf "\033[0;32m[ft_ls] Compilation [OK]\033[0;0m\n"
+	@make -C libft/
+	@gcc $(CFLAGS) $(DEBUG) $(OBJ) libft/libft.a -o $(NAME)
+
 clean:
-		@rm -Rf $(OBJ_DIR)
-		@echo "¯\_(ツ)_/¯ Objects removed!"
+	@make clean -C libft/
+	@/bin/rm -f $(OBJ)
+	@printf "\033[0;31m[ft_ls] Deleted *.o\033[0;0m\n"
+
 fclean: clean
-		@rm -f $(NAME)
-		@echo "(╯°□°）╯︵ ┻━┻ $(NAME) removed!"
+	@/bin/rm -f $(NAME)
+	@make nofclean -C libft/
+	@printf "\033[0;31D[ft_ls] Deleted ft_ls\033[0;0m\n"
+
 re: fclean all
 
-# Phony
 .PHONY: all clean fclean re
