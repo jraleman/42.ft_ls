@@ -19,6 +19,14 @@
 # include "t_path.h"
 
 /*
+** Macro Flags
+*/ 
+# define    EXT_KO		(-1)
+# define    EXT_OK		(0)
+# define    MEM_ERR		EXT_KO
+# define    FLG_ERR		(1)
+# define    OPT_FLAGS	("aAcfglrRStTu1")
+/*
 ** Seconds in 6 months
 ** "A timestamp is considered to be recent if it is less than six months old..."
 ** src: http://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-timestamps
@@ -26,14 +34,14 @@
 # define    SIX_MONTHS     15778800
 
 /* path: ft_ls.c */
-void	    ls_main(t_path *path, char *opt);
+void	    ft_ls(t_path *path, char *opt);
 /* path: utils/print/{.c} */
 void	    print_perm(t_file *info, char *path);
 void	    print_date(t_file *info, char *opt, int *count);
 void	    print_type(t_file *info);
 void	    print_list(t_file *info, char *path, int type, char *opt);
 void	    print_name(t_file *info);
-// sort
+/* sort : utils/sort/{.c} */
 t_file		*ls_sort_size(t_file *info, int rev);
 t_file		*ls_sort_name(t_file *info, int rev);
 t_file		*ls_sort_mtime(t_file *info, int rev);
