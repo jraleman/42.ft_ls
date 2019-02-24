@@ -15,10 +15,16 @@
 # include <stdlib.h>
 # include <string.h>
 
+/*
+** Path types
+*/
+# define	DIR_PATH	(1)
+# define    SYM_PATH	(2)
+
 typedef struct		s_path
 {
 	char			*name;
-	int				error;
+	int				type;
 	struct s_path	*next;
 }					t_path;
 
