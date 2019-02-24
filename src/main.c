@@ -1,9 +1,9 @@
 #include "ft_ls.h"
 
 /*
-** Returns : N/A | EXIT(FLG_ERR)
 ** Validate a flag.
 ** Print usage message and exit program if a flag is not valid.
+** Returns : N/A | EXIT(FLG_ERR)
 */
 
 static void		validate_flag(char *bin, char *s, char *opt)
@@ -13,10 +13,10 @@ static void		validate_flag(char *bin, char *s, char *opt)
 	i = 1;
 	while (s[i])
 	{
-		if (!ft_cisin(OPT_FLAGS, s[i]))
+		if (!ft_cisin(OPT_FLGS, s[i]))
 		{
 			ft_printf("%s: illegal option -- %c\n", bin, s[i]);
-			ft_printf("usage: %s [%s] [file ...]", bin), OPT_FLAGS;
+			ft_printf("usage: %s [%s] [file ...]", bin, OPT_FLGS);
 			return (exit(FLG_ERR));
 		}
 		else if (!ft_cisin(opt, s[i]))
@@ -27,8 +27,8 @@ static void		validate_flag(char *bin, char *s, char *opt)
 }
 
 /*
-** Returns : t_path*
 ** Parse the option flags.
+** Returns : A path structure with valid option flags.
 */ 
 
 static t_path	*parse_opt(char *opt, char *flags[], int total)
@@ -55,8 +55,7 @@ static t_path	*parse_opt(char *opt, char *flags[], int total)
 }
 
 /*
-** Returns: EXT_OK | FLG_ERR | MEM_ERR
-** Program main function.
+** Main program function.
 */
 
 int				main(int argc, char *argv[])
@@ -75,5 +74,5 @@ int				main(int argc, char *argv[])
 		path_del(path);
 		ft_strdel(&opt);
 	}
-	return (!opt ? MEM_ERR : EXT_OK);
+	return (!opt ? MEM_ERR : 0);
 }

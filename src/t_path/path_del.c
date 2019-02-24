@@ -10,7 +10,7 @@ void    path_del(t_path *path)
 
     while (path)
     {
-        if (path->error == -1)
+        if (path->type == DIR_ERR)
             ft_strdel(&(path->name));
         tmp = path;
         path = path->next;

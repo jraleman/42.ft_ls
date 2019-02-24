@@ -7,13 +7,13 @@
 void        path_swp(t_path *a, t_path *b)
 {
     char    *name;
-    int     error;
+    int     type;
 
     name = a->name;
-    error = a->error;
+    type = a->type;
     a->name = b->name;
-    a->error = b->error;
+    a->type = b->type;
     b->name = name;
-    b->error = error;
+    b->type = type;
     return ;
 }

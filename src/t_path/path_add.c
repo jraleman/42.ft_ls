@@ -47,7 +47,7 @@ t_path	*path_add(t_path *path, char *dir, char *opt)
 
 	if (!(last = malloc(sizeof(t_path))))
 		return (NULL);
-	last->error = check_dir(dir, opt);
+	last->type = check_dir(dir, opt);
 	last->name = ft_strdup(dir);
 	last->next = NULL;
 	if (!path)
@@ -58,3 +58,76 @@ t_path	*path_add(t_path *path, char *dir, char *opt)
 	tmp->next = last;
 	return (path);
 }
+
+// #include "ft_ls.h"
+
+// /*
+// ** Check if a string path 
+// ** Returns :
+// **   ` -1 ->
+// **   ` 0  ->
+// **   ` 1  ->
+// */
+
+// static int	is_dir(char *path)
+// {
+// 	DIR		*dir;
+
+// 	dir = opendir(path);
+// 	if (dir)
+// 		return (!ft_strcmp("Not a directory", strerror(errno)) \
+// 			? 0 : DIR_ERR);
+// 	return (!closedir(dir) ? 1 : DIR_ERR);
+// }
+
+// /*
+// ** Checks if a path is a directory.
+// ** Returns:
+// **   ` -1 -> A directory error
+// **   ` 0  -> Not a diretory
+// **   ` 1  -> A directory error
+// **   ` 2  -> A symbolic link
+// */
+
+// static int 	check_dir(char *path, char *opt)
+// {
+// 	int			dir;
+// 	struct stat stt;
+
+// 	dir = is_dir(path);
+// 	if (dir > 0)
+// 	{
+// 		if (ft_cisin(opt, 'l') && path[ft_strlen(path) - 1] != '/')
+// 		{
+// 			lstat(path, &stt);
+// 			if (S_ISLNK(stt.st_mode))
+// 				dir = SYM_LNK;
+// 		}
+// 	}
+// 	if (dir == DIR_ERR)
+// 		ft_dprintf(2, "ls: %s: %s\n", path, strerror(errno));
+// 	return (!dir ? DIR_ERR : dir);
+// }
+
+// /*
+// ** ...
+// */
+
+// t_path	*path_add(t_path *path, char *dir, char *opt)
+// {
+// 	t_path *last;
+// 	t_path *tmp;
+
+// 	if (!(last = malloc(sizeof(t_path))))
+// 		return (NULL);
+// 	last->type = check_dir(dir, opt);
+// 	last->name = ft_strdup(dir);
+// 	last->next = NULL;
+// 	if (!path)
+// 		return (last);
+// 	tmp = path;
+// 	while (tmp->next)
+// 		tmp = tmp->next;
+// 	tmp->next = last;
+// 	return (path);
+// }
