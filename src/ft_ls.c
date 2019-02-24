@@ -1,11 +1,11 @@
+
 #include "ft_ls.h"
 
-// create_file
-static t_file	*create_file(char *path, char *opt, int type)
-{
-	return (type == 1 ? file_dir(path, opt) : file_ini(path));
-}
-// select_print
+/*
+** Print as list if the opt flag is `g` or `l`.
+** Else, print by name.
+*/
+
 static void		select_print(char *opt, t_file *file, char *path, int type)
 {
 	if (file)
@@ -14,10 +14,29 @@ static void		select_print(char *opt, t_file *file, char *path, int type)
 	return ;
 }
 
-static void		delete_files(t_file *files)
+static void		ls(char *path, int type, char *opt, int count)
 {
-	while (files)
-		files = file_del(files);
+	t_file		*file;
+
+	if (count && type != 2)
+		ft_printf("%s:\n", path);
+	file = create_file(path, opt, type);
+	select_print(opt, file, path, type);
+	while (file && ft_cisin(opt, 'R'))
+	{
+		if (ft_strcmp(".", file->name) && ft_strcmp("..", file->name) \
+			&& file->type == 4)
+		{
+			ft_printf("\n");
+			if (!ft_strcmp("/", path))
+				ls(ft_zprintf("%s%s", path, file->name), 1, opt, count + 1);
+			else
+				ls(ft_zprintf("%s/%s", path, file->name), 1, opt, count + 1);
+		}
+		file = file_del(file);
+	}
+	delete_files(file);
+	ft_strdel(&path);
 	return ;
 }
 
@@ -27,33 +46,42 @@ static void		delete_files(t_file *files)
 ** 
 */
 
-static void		ls(char *path, int type, char *opt, int count)
-{
-	t_file		*info;
+// static int		list_symlinks();
+	// int			count;
+	// int			i;
+	// t_path		*tmp;
 
-	if (count && type != 2)
-		ft_printf("%s:\n", path);
-	info = create_file(path, opt, type);
-	info = file_srt(info, opt);
-	select_print(opt, info, path, type);
-	while (info && ft_cisin(opt, 'R'))
-	{
-		if (info->type == 4 && ft_strcmp(".", info->name) &&
-				ft_strcmp("..", info->name))
-		{
-			ft_printf("\n");
-			if (!ft_strcmp("/", path))
-				ls(ft_zprintf("%s%s", path, info->name), 1, opt, count + 1);
-			else
-				ls(ft_zprintf("%s/%s", path, info->name), 1, opt, count + 1);
-		}
-		info = file_del(info);
-	}
-	delete_files(info);
-	ft_strdel(&path);
-	return ;
-}
+	// // list_symlinks
+	// count = 0;
+	// i = 0;
+	// tmp = path;
+	// while (tmp)
+	// {
+	// 	if (tmp->type == 2)
+	// 	{
+	// 		ls(tmp->name, tmp->type, opt, count);
+	// 		count += 1;
+	// 		i += 1;
+	// 	}
+	// 	tmp = tmp->next;
+	// }
 
+
+// static int		list_dirs();
+	// count = path_len(path) - 1;
+	// tmp = path;
+	// while (tmp)
+	// {
+	// 	if (tmp->type == 1)
+	// 	{
+	// 		if (i)
+	// 			ft_printf("\n");
+	// 		ls(tmp->name, tmp->type, opt, count);
+	// 		count += 1;
+	// 		i = 1;
+	// 	}
+	// 	tmp = tmp->next;
+	// }
 
 
 void			ft_ls(t_path *path, char *opt)
@@ -62,32 +90,40 @@ void			ft_ls(t_path *path, char *opt)
 	int			i;
 	t_path		*tmp;
 
+	// int			sym_flg;
 
-	// funct 1
+	// sym_flg = list_symlinks();
+
+	// list_symlinks
 	count = 0;
 	i = 0;
 	tmp = path;
 	while (tmp)
 	{
-		(tmp->error == 2) ? ls(tmp->name, tmp->error, opt, count++) : 0;
-		(tmp->error == 2) ? i++ : 0;
-		tmp = tmp->next;
-	}
-
-	// funct 2
-	count = path_len(path) - 1;
-	tmp = path;
-	while (tmp)
-	{
-		if (tmp->error == 1)
+		if (tmp->type == 2)
 		{
-			(i) ? ft_printf("\n") : 0;
-			i = 1;
-			ls(tmp->name, tmp->error, opt, count++);
+			ls(tmp->name, tmp->type, opt, count);
+			count += 1;
+			i += 1;
 		}
 		tmp = tmp->next;
 	}
 
+	// list_dirs
+	count = path_len(path) - 1;
+	tmp = path;
+	while (tmp)
+	{
+		if (tmp->type == 1)
+		{
+			if (i)
+				ft_printf("\n");
+			ls(tmp->name, tmp->type, opt, count);
+			count += 1;
+			i = 1;
+		}
+		tmp = tmp->next;
+	}
 
 
 	return ;
