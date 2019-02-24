@@ -1,17 +1,23 @@
 #include "ft_ls.h"
 
-static void		parse_flag(char *bin, char *s, char *opt)
+/*
+** Returns : N/A | EXIT(FLG_ERR)
+** Validate a flag.
+** Print usage message and exit program if a flag is not valid.
+*/
+
+static void		validate_flag(char *bin, char *s, char *opt)
 {
 	int 		i;
 
 	i = 1;
 	while (s[i])
 	{
-		if (!ft_cisin("aAcfglrRStTu1", s[i]))
+		if (!ft_cisin(OPT_FLAGS, s[i]))
 		{
 			ft_printf("%s: illegal option -- %c\n", bin, s[i]);
-			ft_printf("usage: %s [-ARSTacfglrtu1] [file ...]", bin);
-			return (exit(1));
+			ft_printf("usage: %s [%s] [file ...]", bin), OPT_FLAGS;
+			return (exit(FLG_ERR));
 		}
 		else if (!ft_cisin(opt, s[i]))
 			ft_strncat(opt, &(s[i]), 1);
@@ -20,7 +26,12 @@ static void		parse_flag(char *bin, char *s, char *opt)
 	return ;
 }
 
-static t_path	*opt_flags(char *opt, char *flags[], int total)
+/*
+** Returns : t_path*
+** Parse the option flags.
+*/ 
+
+static t_path	*parse_opt(char *opt, char *flags[], int total)
 {
 	int			i;
 	t_path		*path;
@@ -33,7 +44,7 @@ static t_path	*opt_flags(char *opt, char *flags[], int total)
 			i += 1;
 		else if (flags[i][0] == '-')
 		{
-			parse_flag(flags[0], flags[i], opt);
+			validate_flag(flags[0], flags[i], opt);
 			continue ;
 		}
 		break ;
@@ -44,10 +55,8 @@ static t_path	*opt_flags(char *opt, char *flags[], int total)
 }
 
 /*
-** Return values
-** -> 0 : success
-** -> 1 : illegal flag
-** -> 2 : memory allocation error
+** Returns: EXT_OK | FLG_ERR | MEM_ERR
+** Program main function.
 */
 
 int				main(int argc, char *argv[])
@@ -58,13 +67,13 @@ int				main(int argc, char *argv[])
 	opt = ft_strnew(13);
 	if (opt)
 	{
-		path = opt_flags(opt, argv, argc);
+		path = parse_opt(opt, argv, argc);
 		if (!path)
 			path = path_add(path, ".", opt);
 		path = path_srt(path, opt);
-		ls_main(path, opt);
+		ft_ls(path, opt);
 		path_del(path);
 		ft_strdel(&opt);
 	}
-	return (!opt ? 2 : 0);
+	return (!opt ? MEM_ERR : EXT_OK);
 }
