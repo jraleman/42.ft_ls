@@ -14,45 +14,45 @@
 # include <stdlib.h>
 # include <string.h>
 
+/*
+** Local header files
+*/
 # include "libft.h"
 # include "t_file.h"
 # include "t_path.h"
-
 /*
-** Macro Flags
+** Error Flags
 */ 
-# define    EXT_KO		(-1)
-# define    EXT_OK		(0)
-# define    MEM_ERR		EXT_KO
-# define    FLG_ERR		(1)
-# define    OPT_FLAGS	("aAcfglrRStTu1")
+# define    MEM_ERR		(-1)
+# define    DIR_ERR     (-2)
+# define    FLG_ERR	    (-3)
+/*
+** Valid option flags
+*/
+# define    OPT_FLGS	("aAcfglrRStTu1")
 /*
 ** Seconds in 6 months
 ** "A timestamp is considered to be recent if it is less than six months old..."
 ** src: http://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-timestamps
 */
-# define    SIX_MONTHS     15778800
-
-/* path: ft_ls.c */
+# define    SIX_MONTHS  (15778800)
+/*
+** Main program
+*/
 void	    ft_ls(t_path *path, char *opt);
-/* path: utils/print/{.c} */
-void	    print_perm(t_file *info, char *path);
-void	    print_date(t_file *info, char *opt, int *count);
-void	    print_type(t_file *info);
-void	    print_list(t_file *info, char *path, int type, char *opt);
-void	    print_name(t_file *info);
-/* sort : utils/sort/{.c} */
-t_file		*ls_sort_size(t_file *info, int rev);
-t_file		*ls_sort_name(t_file *info, int rev);
-t_file		*ls_sort_mtime(t_file *info, int rev);
-t_file		*ls_sort_ctime(t_file *info, int rev);
-t_file		*ls_sort_atime(t_file *info, int rev);
-t_path		*ls_psort_size(t_path *path, int rev);
-t_path		*ls_psort_name(t_path *path, int rev);
-t_path		*ls_psort_mtime(t_path *path, int rev);
-t_path		*ls_psort_ctime(t_path *path, int rev);
-t_path		*ls_psort_atime(t_path *path, int rev);
-
-int			ft_int_str_cmp(int a, int b, char *s1, char *s2);
+/*
+** Print funtions
+*/
+void	    print_name(t_file *file);
+void	    print_type(t_file *file);
+void        print_perm(t_file *file, char *path);
+void	    print_date(t_file *file, char *opt, int *count);
+void	    print_list(t_file *file, char *path, int type, char *opt);
+/*
+** Utils functions
+*/
+int			cmp_time_name(int a, int b, char *s1, char *s2);
+t_file		*create_file(char *path, char *opt, int type);
+void		delete_files(t_file *files);
 
 #endif
