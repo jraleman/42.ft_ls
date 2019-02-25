@@ -104,7 +104,8 @@ t_file			*file_srt(t_file *file, char *opt)
 			sort = sort_time(file, reverse, 'c');
 		else if (ft_cisin(opt, 'u'))
 			sort = sort_time(file, reverse, 'a');
-		sort = sort_time(file, reverse, 'm');
+		else
+			sort = sort_time(file, reverse, 'm');
 	}
 	else if (ft_cisin(opt, 'f'))
 		sort = file;

@@ -112,7 +112,8 @@ t_path			*path_srt(t_path *path, char *opt)
 			sort = sort_time(path, reverse, 'c');
 		else if (ft_cisin(opt, 'u'))
 			sort = sort_time(path, reverse, 'a');
-		sort = sort_time(path, reverse, 'm');
+		else
+			sort = sort_time(path, reverse, 'm');
 	}
 	else if (ft_cisin(opt, 'f'))
 		sort = path;
