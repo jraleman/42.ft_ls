@@ -51,7 +51,7 @@ void	    print_list(t_file *file, char *path, int type, char *opt);
 /*
 ** Utils functions
 */
-int			cmp_time_name(int a, int b, char *s1, char *s2);
+int			cmp_ts_n(int a, int b, char *s1, char *s2);
 t_file		*create_file(char *path, char *opt, int type);
 void		delete_files(t_file *files);
 

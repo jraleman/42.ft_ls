@@ -13,9 +13,9 @@ SRC =	src/main.c \
 		src/t_path/path_len.c \
 		src/t_path/path_srt.c \
 		src/t_path/path_swp.c \
+		src/utils/cmp_ts_n.c \
 		src/utils/create_file.c \
 		src/utils/delete_files.c \
-		src/utils/cmp_time_name.c \
 		src/utils/print/print_date.c \
 		src/utils/print/print_list.c \
 		src/utils/print/print_name.c \
