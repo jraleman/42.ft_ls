@@ -40,91 +40,48 @@ static void		ls(char *path, int type, char *opt, int count)
 	return ;
 }
 
-/*
-** Return : N/A
-** Master function.
-** 
-*/
-
-// static int		list_symlinks();
-	// int			count;
-	// int			i;
-	// t_path		*tmp;
-
-	// // list_symlinks
-	// count = 0;
-	// i = 0;
-	// tmp = path;
-	// while (tmp)
-	// {
-	// 	if (tmp->type == 2)
-	// 	{
-	// 		ls(tmp->name, tmp->type, opt, count);
-	// 		count += 1;
-	// 		i += 1;
-	// 	}
-	// 	tmp = tmp->next;
-	// }
-
-
-// static int		list_dirs();
-	// count = path_len(path) - 1;
-	// tmp = path;
-	// while (tmp)
-	// {
-	// 	if (tmp->type == 1)
-	// 	{
-	// 		if (i)
-	// 			ft_printf("\n");
-	// 		ls(tmp->name, tmp->type, opt, count);
-	// 		count += 1;
-	// 		i = 1;
-	// 	}
-	// 	tmp = tmp->next;
-	// }
-
-
-void			ft_ls(t_path *path, char *opt)
+static int		list_symlnk(t_path *path, char *opt)
 {
-	int			count;
 	int			i;
+	int			sym_lnk;
 	t_path		*tmp;
 
-	// int			sym_flg;
-
-	// sym_flg = list_symlinks();
-
-	// list_symlinks
-	count = 0;
 	i = 0;
+	sym_lnk = 0;
 	tmp = path;
 	while (tmp)
 	{
-		if (tmp->type == 2)
+		if (tmp->type == SYM_PATH)
 		{
-			ls(tmp->name, tmp->type, opt, count);
-			count += 1;
+			ls(tmp->name, tmp->type, opt, i);
 			i += 1;
+			sym_lnk += 1;
 		}
 		tmp = tmp->next;
 	}
+	return (sym_lnk);
+}
 
-	// list_dirs
-	count = path_len(path) - 1;
+void			ft_ls(t_path *path, char *opt)
+{
+	int			sym_lnk;
+	int 		len;
+	t_path		*tmp;
+
+	sym_lnk = list_symlnk(path, opt);
+	len = path_len(path) - 1;
 	tmp = path;
 	while (tmp)
 	{
 		if (tmp->type == 1)
 		{
-			if (i)
+			if (sym_lnk > 0)
 				ft_printf("\n");
-			ls(tmp->name, tmp->type, opt, count);
-			count += 1;
-			i = 1;
+			ls(tmp->name, tmp->type, opt, len);
+			len += 1;
+			sym_lnk = 1;
 		}
 		tmp = tmp->next;
 	}
-
-
 	return ;
 }
