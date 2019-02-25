@@ -35,9 +35,9 @@ static t_path	*sort_time(t_path *path, int reverse, char type)
 			timestap[1] = get_timestap(tstat, type);
 			lstat(path->name, &pstat);
 			lstat(tmp->name, &tstat);
-			if ((cmp_time_name(timestap[0], timestap[1], path->name,
+			if ((cmp_ts_n(timestap[0], timestap[1], path->name,
 						tmp->name) < 0 && !reverse) ||
-					(cmp_time_name(timestap[0], timestap[1], path->name,
+					(cmp_ts_n(timestap[0], timestap[1], path->name,
 						tmp->name) > 0 && reverse))
 				path_swp(path, tmp);
 			tmp = tmp->next;
@@ -63,9 +63,9 @@ static t_path	*sort_size(t_path *path, int rev)
 		{
 			lstat(path->name, &pstat);
 			lstat(tmp->name, &tstat);
-			if ((cmp_time_name(pstat.st_size, tstat.st_size, path->name,
+			if ((cmp_ts_n(pstat.st_size, tstat.st_size, path->name,
 						tmp->name) < 0 && !rev) ||
-					(cmp_time_name(pstat.st_size, tstat.st_size, path->name,
+					(cmp_ts_n(pstat.st_size, tstat.st_size, path->name,
 						tmp->name) > 0 && rev))
 				path_swp(path, tmp);
 			tmp = tmp->next;

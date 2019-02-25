@@ -32,9 +32,9 @@ static t_file	*sort_time(t_file *file, int reverse, char type)
 		timestap[1] = get_timestap(tmp, type);
 		while (tmp)
 		{
-			if ((cmp_time_name(timestap[0], timestap[1], \
+			if ((cmp_ts_n(timestap[0], timestap[1], \
 					file->name, tmp->name) < 0 && !reverse) \
-				|| (cmp_time_name(timestap[0], timestap[1],
+				|| (cmp_ts_n(timestap[0], timestap[1],
 					file->name, tmp->name) > 0 && reverse))
 				file_swp(file, tmp);
 			tmp = tmp->next;
@@ -56,9 +56,9 @@ static t_file	*sort_size(t_file *file, int rev)
 		tmp = file->next;
 		while (tmp)
 		{
-			if ((cmp_time_name(file->stat.st_size, tmp->stat.st_size,
+			if ((cmp_ts_n(file->stat.st_size, tmp->stat.st_size,
 						file->name, tmp->name) < 0 && !rev) ||
-					(cmp_time_name(file->stat.st_size, tmp->stat.st_size,
+					(cmp_ts_n(file->stat.st_size, tmp->stat.st_size,
 						file->name, tmp->name) > 0 && rev))
 				file_swp(file, tmp);
 			tmp = tmp->next;
