@@ -16,7 +16,7 @@ static void		validate_flag(char *bin, char *s, char *opt)
 		if (!ft_cisin(OPT_FLGS, s[i]))
 		{
 			ft_printf("%s: illegal option -- %c\n", bin, s[i]);
-			ft_printf("usage: %s [%s] [file ...]", bin, OPT_FLGS);
+			ft_printf("usage: %s [%s] [file ...]\n", bin, OPT_FLGS);
 			return (exit(FLG_ERR));
 		}
 		else if (!ft_cisin(opt, s[i]))
