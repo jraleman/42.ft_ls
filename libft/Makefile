@@ -1,45 +1,52 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/10/23 20:42:04 by jaleman           #+#    #+#              #
-#    Updated: 2018/10/23 20:42:05 by jaleman          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME   = libft.a
+CC     = gcc
+CFLAGS = -Wall -Wextra -Werror -I . -I ft_printf/
 
-NAME    = libft.a
+SRC    = ft_atoi.c \
+		 ft_cisin.c \
+		 ft_putchar.c \
+		 ft_strcat.c \
+  		 ft_strcmp.c \
+  		 ft_strcpy.c \
+  		 ft_strdel.c \
+  		 ft_strdup.c \
+  		 ft_strlen.c \
+  		 ft_strlower.c \
+  		 ft_strncat.c \
+  		 ft_strncat.c \
+  		 ft_strndup.c \
+  		 ft_strnew.c \
+  		 ft_printf/ft_printf.c \
+  		 ft_printf/pf_base.c \
+  		 ft_printf/pf_ftoa.c \
+  		 ft_printf/pf_len.c \
+  		 ft_printf/pf_options.c \
+  		 ft_printf/pf_parsing.c \
+  		 ft_printf/pf_put.c \
+  		 ft_printf/pf_router.c \
+  		 ft_printf/pf_struct.c \
+  		 ft_printf/pf_utils.c
+OBJ     = $(SRC:.c=.o) 
 
-INC_DIR = ./includes/
-SRC_DIR = ./src/
-OBJ_DIR = ./obj/
+all: $(NAME)
 
-INC     = $(INC_DIR)
-SRC     = ft_putchar_fd.c
-OBJ     = $(SRC:%.c=$(OBJ_DIR)/%.o)
+%.o: %.c
+	@printf "\x1B[0;32m[Libft] Compilation [o.] \r"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "\x1B[0;32m[Libft] Compilation [.o] \r"
 
-CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror
-LFLAGS  = -I.
-AR      = ar rc
-RLIB    = ranlib
-
-all:	obj $(NAME)
-obj:
-		@mkdir -p $(OBJ_DIR)
 $(NAME): $(OBJ)
-		@$(AR) $(NAME) $(OBJ)
-		@$(RLIB) $(NAME)
-		@echo "[INFO] $(NAME) created!"
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
-		$(CC) $(CFLAGS) -c $< -o $@ $(LFLAGS)/$(INC)
+	@ar rc $(NAME) $(OBJ)
+	@printf "\x1B[0;32m[Libft] Compilation [OK]\n"
+
 clean:
-		@rm -rf $(OBJ) $(OBJ_DIR)
-		@echo "[INFO] Objects removed!"
-fclean: clean
-		@rm -rf $(NAME)
-		@echo "[INFO] Library [$(NAME)] removed!"
-re:	fclean all
-.PHONY: all clean fclean re
+	@/bin/rm -f $(OBJ)
+	@printf "\033[0;31m[Libft] Deleted *.o\n"
+
+nofclean:
+	@/bin/rm -f $(NAME)
+	@printf "\033[0;31m[Libft] Deleted libft.a\n"
+
+fclean: nofclean clean
+
+re: fclean all
