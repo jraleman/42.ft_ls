@@ -23,9 +23,9 @@
 /*
 ** Error Flags
 */ 
-# define    MEM_ERR		(-1)
-# define    DIR_ERR     (-2)
-# define    FLG_ERR	    (-3)
+# define    MEM_ERR		(3)
+# define    DIR_ERR     (2)
+# define    FLG_ERR	    (1)
 /*
 ** Valid option flags
 */
