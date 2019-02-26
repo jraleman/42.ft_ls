@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_path.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/15 18:18:00 by jaleman           #+#    #+#             */
+/*   Updated: 2019/02/15 18:18:01 by jaleman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef T_PATH
 # define T_PATH
 
-// ...
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/xattr.h>
@@ -18,8 +29,9 @@
 /*
 ** Path types
 */
+
 # define	DIR_PATH	(1)
-# define    SYM_PATH	(2)
+# define	SYM_PATH	(2)
 
 typedef struct		s_path
 {
