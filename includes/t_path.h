@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_PATH
-# define T_PATH
+#ifndef T_PATH_H
+# define T_PATH_H
 
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -30,8 +30,8 @@
 ** Path types
 */
 
-# define	DIR_PATH	(1)
-# define	SYM_PATH	(2)
+# define DIR_PATH	(1)
+# define SYM_PATH	(2)
 
 typedef struct		s_path
 {

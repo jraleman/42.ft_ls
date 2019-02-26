@@ -38,23 +38,23 @@
 ** Error Flags
 */
 
-# define	MEM_ERR		(3)
-# define	DIR_ERR		(2)
-# define	FLG_ERR		(1)
+# define MEM_ERR		(3)
+# define DIR_ERR		(2)
+# define FLG_ERR		(1)
 
 /*
 ** Valid option flags
 */
 
-# define	OPT_FLGS	("aAcfglrRStTu1")
+# define OPT_FLGS		("aAcfglrRStTu1")
 
 /*
 ** Seconds in 6 months
-** "A timestamp is considered to be recent if 
+** "A timestamp is considered to be recent if
 ** it is less than six months old..."
 */
 
-# define	SIX_MONTHS	(15778800)
+# define SIX_MONTHS		(15778800)
 
 /*
 ** Main program
