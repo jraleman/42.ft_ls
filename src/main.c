@@ -75,7 +75,7 @@ int				main(int argc, char *argv[])
 	t_path		*path;
 	char		*opt;
 
-	opt = ft_strnew(13);
+	opt = ft_strnew(ft_strlen(OPT_FLGS));
 	if (opt)
 	{
 		path = parse_opt(opt, argv, argc);

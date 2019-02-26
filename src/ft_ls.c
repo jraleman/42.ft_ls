@@ -21,12 +21,13 @@ static void		select_print(char *opt, t_file *file, char *path, int type)
 {
 	if (file)
 		ft_cisin(opt, 'g') || ft_cisin(opt, 'l') \
-			? print_list(file, path, type, opt) : print_name(file);
+			? print_list(file, path, opt, type) : print_name(file);
 	return ;
 }
 
 /*
-** ...
+** Prints the files from a given path.
+** Calls itself when the opt flag is recursive.
 */
 
 static void		ls(char *path, int type, char *opt, int count)
@@ -56,7 +57,7 @@ static void		ls(char *path, int type, char *opt, int count)
 }
 
 /*
-** ...
+** Returns the symbolic link list count.
 */
 
 static int		list_symlnk(t_path *path, char *opt)
@@ -82,7 +83,7 @@ static int		list_symlnk(t_path *path, char *opt)
 }
 
 /*
-** ...
+** From a given path list the different files.
 */
 
 void			ft_ls(t_path *path, char *opt)
