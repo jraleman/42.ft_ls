@@ -39,6 +39,7 @@ typedef struct		s_file
 }					t_file;
 
 void				file_swp(t_file *a, t_file *b);
+int					*file_len(t_file *file);
 t_file				*file_ini(char *path);
 t_file				*file_del(t_file *file);
 t_file				*file_dir(char *path, char *opt);
