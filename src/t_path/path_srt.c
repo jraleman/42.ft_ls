@@ -16,18 +16,20 @@
 ** ...
 */
 
-static int		get_timestap(struct stat path, char type)
+static int		get_timestap(t_path *path, char type)
 {
 	int			timestap;
+	struct stat	tstat;
 
 	timestap = -1;
+	lstat(path->name, &tstat);
 	{
 		if (type == 'a')
-			timestap = path.st_atime;
+			timestap = tstat.st_atime;
 		else if (type == 'c')
-			timestap = path.st_ctime;
+			timestap = tstat.st_ctime;
 		else if (type == 'm')
-			timestap = path.st_mtime;
+			timestap = tstat.st_mtime;
 	}
 	return (timestap);
 }
@@ -40,8 +42,6 @@ static t_path	*sort_time(t_path *path, int reverse, char type)
 {
 	t_path		*begin;
 	t_path		*tmp;
-	struct stat	tstat;
-	struct stat	pstat;
 	int			timestap[2];
 
 	tmp = NULL;
@@ -51,10 +51,8 @@ static t_path	*sort_time(t_path *path, int reverse, char type)
 		tmp = path->next;
 		while (tmp)
 		{
-			timestap[0] = get_timestap(pstat, type);
-			timestap[1] = get_timestap(tstat, type);
-			lstat(path->name, &pstat);
-			lstat(tmp->name, &tstat);
+			timestap[0] = get_timestap(path, type);
+			timestap[1] = get_timestap(tmp, type);
 			if ((cmp_ts_n(timestap[0], timestap[1], path->name,
 						tmp->name) < 0 && !reverse) ||
 					(cmp_ts_n(timestap[0], timestap[1], path->name,
