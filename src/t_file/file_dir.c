@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Create a file directory.
 */
 
 static t_file		*file_dir_create(DIR *ptr, char *path, char *opt)
@@ -43,7 +43,7 @@ static t_file		*file_dir_create(DIR *ptr, char *path, char *opt)
 }
 
 /*
-** ...
+** Returns a file directory entry if the path is a directory.
 */
 
 t_file				*file_dir(char *path, char *opt)

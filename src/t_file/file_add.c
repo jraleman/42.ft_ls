@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-**  Add a new file to store data at the end of the file list.
+**  Add a new entry to store data at the end of the file list.
 */
 
 t_file	*file_add(t_file *file, char *name, struct stat vstat, int type)

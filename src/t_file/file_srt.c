@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** Get the timestap of the current file.
+*/
+
 static int		get_timestap(t_file *file, char type)
 {
 	int			timestap;
@@ -28,6 +32,10 @@ static int		get_timestap(t_file *file, char type)
 	}
 	return (timestap);
 }
+
+/*
+** Sort by time.
+*/
 
 static t_file	*sort_time(t_file *file, int reverse, char type)
 {
@@ -56,6 +64,10 @@ static t_file	*sort_time(t_file *file, int reverse, char type)
 	return (begin);
 }
 
+/*
+** Sort by size.
+*/
+
 static t_file	*sort_size(t_file *file, int rev)
 {
 	t_file		*begin;
@@ -80,6 +92,10 @@ static t_file	*sort_size(t_file *file, int rev)
 	return (begin);
 }
 
+/*
+** Sort by name.
+*/
+
 static t_file	*sort_name(t_file *file, int rev)
 {
 	t_file		*begin;
@@ -101,6 +117,16 @@ static t_file	*sort_name(t_file *file, int rev)
 	}
 	return (begin);
 }
+
+/*
+** Sort entries correspoding to the opt flag.
+** `  -r : reverse
+** `  -S : size
+** `  -t : time
+** `    -c : last changed
+** `    -u : last access
+** `  -f : file
+*/
 
 t_file			*file_srt(t_file *file, char *opt)
 {

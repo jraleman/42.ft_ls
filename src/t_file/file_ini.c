@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Initialize an entry file list.
 */
 
 t_file			*file_ini(char *path)

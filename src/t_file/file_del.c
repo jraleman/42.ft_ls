@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** Delete a file from
+** Delete an entry from the file list.
 */
 
 t_file		*file_del(t_file *file)

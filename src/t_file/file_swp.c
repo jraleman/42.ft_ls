@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** Swap entries between two file lists.
+*/
+
 void	file_swp(t_file *a, t_file *b)
 {
 	struct stat		tmps;
