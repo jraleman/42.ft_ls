@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Print the name of the file entry.
 */
 
 void	print_name(t_file *file)

@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Prints the file entry type.
 */
 
 void	print_type(t_file *file)

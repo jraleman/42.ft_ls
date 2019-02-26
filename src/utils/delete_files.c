@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Delete multiple files.
 */
 
 void		delete_files(t_file *files)

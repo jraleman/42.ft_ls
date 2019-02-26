@@ -70,7 +70,8 @@ void		print_name(t_file *file);
 void		print_type(t_file *file);
 void		print_perm(t_file *file, char *path);
 void		print_date(t_file *file, char *opt, int *count);
-void		print_list(t_file *file, char *path, int type, char *opt);
+void		print_list(t_file *file, char *path, char *opt, int type);
+void		print_entry(t_file *file, char *path, char *opt, int type);
 
 /*
 ** Utils functions
