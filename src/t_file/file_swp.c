@@ -16,7 +16,7 @@ void	file_swp(t_file *a, t_file *b)
 {
 	struct stat		tmps;
 	char			*tmpn;
-	int	tmpt;
+	int				tmpt;
 
 	tmpn = a->name;
 	tmpt = a->type;

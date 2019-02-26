@@ -12,10 +12,14 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 static time_t	get_diff(time_t t, char *opt, t_file *info)
 {
-	time_t	tmp;
-	char	*tm;
+	time_t		tmp;
+	char		*tm;
 
 	if (ft_cisin(opt, 'u'))
 	{
@@ -35,10 +39,14 @@ static time_t	get_diff(time_t t, char *opt, t_file *info)
 	return (t - tmp);
 }
 
-void	print_date(t_file *info, char *opt, int *count)
+/*
+** ...
+*/
+
+void			print_date(t_file *info, char *opt, int *count)
 {
-	time_t			tme;
-	char			*tm;
+	time_t		tme;
+	char		*tm;
 
 	tme = time(NULL);
 	if (ft_cisin(opt, 'u'))

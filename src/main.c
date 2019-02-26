@@ -20,7 +20,7 @@
 
 static void		validate_flag(char *bin, char *s, char *opt)
 {
-	int 		i;
+	int			i;
 
 	i = 1;
 	while (s[i])
@@ -41,7 +41,7 @@ static void		validate_flag(char *bin, char *s, char *opt)
 /*
 ** Parse the option flags.
 ** Returns : A path structure with valid option flags.
-*/ 
+*/
 
 static t_path	*parse_opt(char *opt, char *flags[], int total)
 {

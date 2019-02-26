@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 void	print_type(t_file *file)
 {
 	S_ISBLK(file->stat.st_mode) ? ft_putchar('b') : 0;

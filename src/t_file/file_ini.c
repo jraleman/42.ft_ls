@@ -14,9 +14,9 @@
 
 /*
 ** ...
-*/ 
+*/
 
-t_file		*file_ini(char *path)
+t_file			*file_ini(char *path)
 {
 	struct stat	vstat;
 	t_file		*file;

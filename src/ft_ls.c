@@ -25,6 +25,10 @@ static void		select_print(char *opt, t_file *file, char *path, int type)
 	return ;
 }
 
+/*
+** ...
+*/
+
 static void		ls(char *path, int type, char *opt, int count)
 {
 	t_file		*file;
@@ -51,6 +55,10 @@ static void		ls(char *path, int type, char *opt, int count)
 	return ;
 }
 
+/*
+** ...
+*/
+
 static int		list_symlnk(t_path *path, char *opt)
 {
 	int			i;
@@ -73,10 +81,14 @@ static int		list_symlnk(t_path *path, char *opt)
 	return (sym_lnk);
 }
 
+/*
+** ...
+*/
+
 void			ft_ls(t_path *path, char *opt)
 {
 	int			sym_lnk;
-	int 		len;
+	int			len;
 	t_path		*tmp;
 
 	sym_lnk = list_symlnk(path, opt);

@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 void	print_name(t_file *file)
 {
 	while (file)

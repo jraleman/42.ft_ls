@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 static int		get_timestap(struct stat path, char type)
 {
 	int			timestap;
@@ -27,6 +31,10 @@ static int		get_timestap(struct stat path, char type)
 	}
 	return (timestap);
 }
+
+/*
+** ...
+*/
 
 static t_path	*sort_time(t_path *path, int reverse, char type)
 {
@@ -59,6 +67,10 @@ static t_path	*sort_time(t_path *path, int reverse, char type)
 	return (begin);
 }
 
+/*
+** ...
+*/
+
 static t_path	*sort_size(t_path *path, int rev)
 {
 	t_path		*begin;
@@ -87,6 +99,10 @@ static t_path	*sort_size(t_path *path, int rev)
 	return (begin);
 }
 
+/*
+** ...
+*/
+
 static t_path	*sort_name(t_path *path, int rev)
 {
 	t_path		*begin;
@@ -109,6 +125,9 @@ static t_path	*sort_name(t_path *path, int rev)
 	return (begin);
 }
 
+/*
+** ...
+*/
 
 t_path			*path_srt(t_path *path, char *opt)
 {

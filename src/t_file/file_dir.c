@@ -14,7 +14,7 @@
 
 /*
 ** ...
-*/ 
+*/
 
 static t_file		*file_dir_create(DIR *ptr, char *path, char *opt)
 {
@@ -26,8 +26,8 @@ static t_file		*file_dir_create(DIR *ptr, char *path, char *opt)
 	dir = NULL;
 	while ((ret = readdir(ptr)))
 	{
-		if (ret->d_name[0] == '.' \
-				&& !ft_cisin(opt, 'a') && !ft_cisin(opt, 'A') && !ft_cisin(opt, 'f'))
+		if (ret->d_name[0] == '.' && !ft_cisin(opt, 'f') \
+				&& !ft_cisin(opt, 'a') && !ft_cisin(opt, 'A'))
 			continue;
 		if ((!ft_strcmp(".", ret->d_name) || !ft_strcmp("..", ret->d_name)) \
 				&& ft_cisin(opt, 'A'))
@@ -44,9 +44,9 @@ static t_file		*file_dir_create(DIR *ptr, char *path, char *opt)
 
 /*
 ** ...
-*/ 
+*/
 
-t_file		*file_dir(char *path, char *opt)
+t_file				*file_dir(char *path, char *opt)
 {
 	t_file			*dir;
 	DIR				*ptr;
@@ -62,4 +62,3 @@ t_file		*file_dir(char *path, char *opt)
 		ft_dprintf(2, "ls: %s: %s\n", path, strerror(errno));
 	return (dir);
 }
-

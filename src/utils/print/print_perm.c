@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 void	print_perm(t_file *info, char *path)
 {
 	char			buf[1024];

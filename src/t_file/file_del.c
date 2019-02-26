@@ -13,10 +13,10 @@
 #include "ft_ls.h"
 
 /*
-** Delete a file from 
+** Delete a file from
 */
 
-t_file	*file_del(t_file *file)
+t_file		*file_del(t_file *file)
 {
 	int		i;
 	t_file	*tmp;
@@ -33,4 +33,3 @@ t_file	*file_del(t_file *file)
 	}
 	return (tmp);
 }
-

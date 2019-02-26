@@ -17,7 +17,7 @@
 */
 
 t_file		*create_file(char *path, char *opt, int type)
-{	
+{
 	t_file		*file;
 
 	file = (type == 1 ? file_dir(path, opt) : file_ini(path));

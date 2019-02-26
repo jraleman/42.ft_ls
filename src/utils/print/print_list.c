@@ -12,9 +12,13 @@
 
 #include "ft_ls.h"
 
+/*
+** ...
+*/
+
 static int		ls_n_blocks(t_file *info)
 {
-	int		total;
+	int			total;
 
 	total = 0;
 	while (info)
@@ -25,7 +29,11 @@ static int		ls_n_blocks(t_file *info)
 	return (total);
 }
 
-static char	*ls_relink(t_file *info, char *path, int type)
+/*
+** ...
+*/
+
+static char		*ls_relink(t_file *info, char *path, int type)
 {
 	char		buf[1024];
 	char		*tmp;
@@ -41,7 +49,11 @@ static char	*ls_relink(t_file *info, char *path, int type)
 	return (ft_zprintf("%s -> %s", info->name, buf));
 }
 
-static void	ls_sprint_rest(t_file *info, char *path, char *opt, int type)
+/*
+** ...
+*/
+
+static void		ls_sprint_rest(t_file *info, char *path, char *opt, int type)
 {
 	int			i;
 
@@ -66,12 +78,15 @@ static void	ls_sprint_rest(t_file *info, char *path, char *opt, int type)
 	info->entry[i] = NULL;
 }
 
+/*
+** ...
+*/
 
 static int		*file_inilen_l(t_file *info)
 {
-	t_file	*tmp;
-	int		count;
-	int		*len;
+	t_file		*tmp;
+	int			count;
+	int			*len;
 
 	count = 0;
 	len = NULL;
@@ -94,11 +109,15 @@ static int		*file_inilen_l(t_file *info)
 	return (len);
 }
 
-void	print_list(t_file *info, char *path, int type, char *opt)
+/*
+** ...
+*/
+
+void			print_list(t_file *info, char *path, int type, char *opt)
 {
-	t_file	*tmp;
-	int		count;
-	int		*len;
+	t_file		*tmp;
+	int			count;
+	int			*len;
 
 	count = 0;
 	tmp = info;
