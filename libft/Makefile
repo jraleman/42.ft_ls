@@ -1,7 +1,16 @@
-NAME   = libft.a
-CC     = gcc
-CFLAGS = -Wall -Wextra -Werror -I . -I ft_printf/
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jaleman <jraleman@student.42.us.org>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/02/15 18:18:00 by jaleman           #+#    #+#              #
+#    Updated: 2019/02/15 18:18:01 by jaleman          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+NAME   = libft.a
 SRC    = ft_atoi.c \
 		 ft_cisin.c \
 		 ft_putchar.c \
@@ -26,27 +35,25 @@ SRC    = ft_atoi.c \
   		 ft_printf/pf_router.c \
   		 ft_printf/pf_struct.c \
   		 ft_printf/pf_utils.c
-OBJ     = $(SRC:.c=.o) 
+CC     = gcc
+CFLAGS = -Wall -Wextra -Werror -I . -I ft_printf/
+OBJ     = $(SRC:.c=.o)
 
 all: $(NAME)
-
 %.o: %.c
-	@printf "\x1B[0;32m[Libft] Compilation [o.] \r"
+	@printf "[Libft] Compiling [:.]\r"
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\x1B[0;32m[Libft] Compilation [.o] \r"
-
+	@printf "[Libft] Compiling [.:]\r"
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
-	@printf "\x1B[0;32m[Libft] Compilation [OK]\n"
-
+	@printf "[Libft] Compiled successfuly! [OK]\n"
 clean:
 	@/bin/rm -f $(OBJ)
-	@printf "\033[0;31m[Libft] Deleted *.o\n"
-
+	@printf "[Libft] Removed object files!\n"
 nofclean:
 	@/bin/rm -f $(NAME)
-	@printf "\033[0;31m[Libft] Deleted libft.a\n"
-
+	@printf "[Libft] Removed libft binary!\n"
 fclean: nofclean clean
-
 re: fclean all
+
+.PHONY: all clean fclean re

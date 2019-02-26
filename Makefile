@@ -3,15 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaleman <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jaleman <jraleman@student.42.us.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 18:18:00 by jaleman           #+#    #+#              #
 #    Updated: 2019/02/15 18:18:01 by jaleman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_ls 
-
+NAME = ft_ls
 SRC =	src/main.c \
 		src/ft_ls.c \
 		src/t_file/file_add.c \
@@ -32,45 +31,29 @@ SRC =	src/main.c \
 		src/utils/print/print_list.c \
 		src/utils/print/print_name.c \
 		src/utils/print/print_type.c \
-		src/utils/print/print_perm.c 
-
+		src/utils/print/print_perm.c
 CC = gcc
-
 CFLAGS = -I includes/ -I libft/ -Wall -Werror -Wextra
+OBJ = $(SRC:.c=.o)
 DEBUG = #-g3 -fsanitize=address
 
-OBJ = $(SRC:.c=.o)
-
 all: $(NAME)
-
 %.o: %.c
-	@printf "\033[0;32m[ft_ls] Compilation [o.]\033[0;0m\r"
+	@printf "[ft_ls] Compiling [.:]\r"
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\033[0;32m[ft_ls] Compilation [.o]\033[0;0m\r"
-
-check:
-	-@cat $(SRC) | grep ft_strnew	| grep -v "if (\!(" 
-	-@cat $(SRC) | grep ft_strdup 	| grep -v "if (\!(" 
-	-@cat $(SRC) | grep ft_strndup	| grep -v "if (\!(" 
-	-@cat $(SRC) | grep malloc    	| grep -v "if (\!(" 
-	-@cat $(SRC) | grep printf		| grep -v ft_printf	| grep -v t_printf
-	@norminette $(SRC)
-
+	@printf "[ft_ls] Compiling [:.]\r"
 $(NAME): $(OBJ)
-	@printf "\033[0;32m[ft_ls] Compilation [OK]\033[0;0m\n"
+	@printf "[ft_ls] Compiled successfuly! [OK]\n"
 	@make -C libft/
 	@gcc $(CFLAGS) $(DEBUG) $(OBJ) libft/libft.a -o $(NAME)
-
 clean:
 	@make clean -C libft/
 	@/bin/rm -f $(OBJ)
-	@printf "\033[0;31m[ft_ls] Deleted *.o\033[0;0m\n"
-
+	@printf "[ft_ls] Removed object files!\n"
 fclean: clean
 	@/bin/rm -f $(NAME)
 	@make nofclean -C libft/
-	@printf "\033[0;31D[ft_ls] Deleted ft_ls\033[0;0m\n"
-
+	@printf "[ft_ls] Removed ft_ls binary!\n"
 re: fclean all
 
 .PHONY: all clean fclean re
