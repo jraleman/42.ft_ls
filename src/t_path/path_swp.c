@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Swap entries between two path lists.
 */
 
 void		path_swp(t_path *a, t_path *b)

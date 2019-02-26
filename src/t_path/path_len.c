@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Get the len of the path list.
 */
 
 int		path_len(t_path *path)

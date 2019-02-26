@@ -14,11 +14,6 @@
 
 /*
 ** Checks if a path is a directory.
-** Returns:
-**   ` -1 -> A directory error
-**   ` 0  -> Not a diretory
-**   ` 1  -> A directory error
-**   ` 2  -> A symbolic link
 */
 
 static int		is_dir(char *path)
@@ -31,7 +26,11 @@ static int		is_dir(char *path)
 }
 
 /*
-** ...
+** Returns:
+**   ` -1 -> A directory error
+**   ` 0  -> Not a diretory
+**   ` 1  -> A directory error
+**   ` 2  -> A symbolic link
 */
 
 static int		check_dir(char *path, char *opt)
@@ -39,22 +38,23 @@ static int		check_dir(char *path, char *opt)
 	int			ret;
 	struct stat	stt;
 
-	if ((ret = is_dir(path)) > 0)
+	ret = is_dir(path);
+	if (ret > 0)
 	{
 		if (ft_cisin(opt, 'l') && path[ft_strlen(path) - 1] != '/')
 		{
 			lstat(path, &stt);
 			if (S_ISLNK(stt.st_mode))
-				ret = 2;
+				ret = SYM_PATH;
 		}
 	}
 	if (ret == -1)
 		ft_dprintf(2, "ls: %s: %s\n", path, strerror(errno));
-	return (ret == 0 ? 2 : ret);
+	return (!ret ? SYM_PATH : ret);
 }
 
 /*
-** ...
+** Add a path to the path list.
 */
 
 t_path			*path_add(t_path *path, char *dir, char *opt)

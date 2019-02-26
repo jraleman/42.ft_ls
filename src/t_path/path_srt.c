@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Get the timestap of the current path.
 */
 
 static int		get_timestap(t_path *path, char type)
@@ -35,7 +35,7 @@ static int		get_timestap(t_path *path, char type)
 }
 
 /*
-** ...
+** Sort by time.
 */
 
 static t_path	*sort_time(t_path *path, int reverse, char type)
@@ -66,7 +66,7 @@ static t_path	*sort_time(t_path *path, int reverse, char type)
 }
 
 /*
-** ...
+** Sort by size.
 */
 
 static t_path	*sort_size(t_path *path, int rev)
@@ -98,7 +98,7 @@ static t_path	*sort_size(t_path *path, int rev)
 }
 
 /*
-** ...
+** Sort by name.
 */
 
 static t_path	*sort_name(t_path *path, int rev)
@@ -124,7 +124,13 @@ static t_path	*sort_name(t_path *path, int rev)
 }
 
 /*
-** ...
+** Sort paths correspoding to the opt flag.
+** `  -r : reverse
+** `  -S : size
+** `  -t : time
+** `    -c : last changed
+** `    -u : last access
+** `  -f : file
 */
 
 t_path			*path_srt(t_path *path, char *opt)

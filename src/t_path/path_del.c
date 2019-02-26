@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 /*
-** ...
+** Delete a path from the path list.
 */
 
 void		path_del(t_path *path)
