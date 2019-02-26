@@ -19,6 +19,7 @@ SRC =	src/main.c \
 		src/t_file/file_ini.c \
 		src/t_file/file_srt.c \
 		src/t_file/file_swp.c \
+		src/t_file/file_len.c \
 		src/t_path/path_add.c \
 		src/t_path/path_del.c \
 		src/t_path/path_len.c \
@@ -31,6 +32,7 @@ SRC =	src/main.c \
 		src/utils/print/print_list.c \
 		src/utils/print/print_name.c \
 		src/utils/print/print_type.c \
+		src/utils/print/print_entry.c \
 		src/utils/print/print_perm.c
 CC = gcc
 CFLAGS = -I includes/ -I libft/ -Wall -Werror -Wextra
